@@ -4,12 +4,12 @@ import { DbService } from 'src/db/db.service';
 import { GenericService } from 'src/generic/generic.service';
 
 @Injectable()
-export class PostService extends GenericService<
-  'post',
-  Prisma.postCreateInput,
-  Prisma.postUpdateInput
+export class ArticleService extends GenericService<
+  'article',
+  Prisma.articleCreateInput,
+  Prisma.articleUpdateInput
 > {
-  constructor(db: DbService) {
-    super(db, 'post');
+  constructor(dbService: DbService) {
+    super(dbService, 'article');
   }
 }
