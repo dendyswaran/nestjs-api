@@ -6,6 +6,7 @@ import {
   Param,
   Patch,
   Post,
+  Query,
 } from '@nestjs/common';
 import { CreatePostDto, UpdatePostDto } from './post.dto';
 import { PostService } from './post.service';
@@ -20,8 +21,13 @@ export class PostController {
   }
 
   @Get()
-  findAll() {
-    return this.postService.findAll();
+  findAll(
+    @Query('page') page: number,
+    @Query('limit') limit: number,
+    @Query('sortBy') sortBy: string,
+    @Query('sortOrder') sortOrder: string,
+  ) {
+    return this.postService.paginate(page, limit, sortBy, sortOrder);
   }
 
   @Get(':id')
